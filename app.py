@@ -10,7 +10,7 @@ app = Flask(__name__)
 def shortest_safest_path():
     data = request.get_json()
     current_location=data['current_location']
-    print(current_location)
+    # print(current_location)
     shortest_dist,shortest_path=shortest_path_main(current_location)
     if(shortest_dist==1000000):
         return jsonify({
