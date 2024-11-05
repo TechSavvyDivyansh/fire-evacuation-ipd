@@ -77,23 +77,26 @@ def monitor_and_update_path(graph, start, destination, interval=10):
         result_distance=result['distance']
     else:
         print("No safe path found.")
-        result_distance=100000
+        result_distance=1000000
         result_path=[]
     return result_distance,result_path
 
 
 # Load the graph from JSON file
-graph = load_graph_from_json('graph.json')  # Replace with your graph JSON file path
+
 
 # Start monitoring and updating path dynamically
 
-exits=['Stairway1','Stairway2','Stairway3']
-distance=[]
-path=[]
-for exit in exits:
-    result_distance,result_path=monitor_and_update_path(graph, "Men's Restroom", exit, interval=10)
-    distance.append(result_distance)
-    path.append(result_path)
-shortest_dist=min(distance)
-print(shortest_dist)
-print(path[distance.index(shortest_dist)])
+def shortest_path_main(current_location):
+    graph = load_graph_from_json('graph.json')  # Replace with your graph JSON file path
+    exits=['Stairway1','Stairway2','Stairway3']
+    distance=[]
+    path=[]
+    for exit in exits:
+        result_distance,result_path=monitor_and_update_path(graph, current_location, exit, interval=10)
+        distance.append(result_distance)
+        path.append(result_path)
+    shortest_dist=min(distance)
+    shortest_path=path[distance.index(shortest_dist)]
+    
+    return shortest_dist,shortest_path 
