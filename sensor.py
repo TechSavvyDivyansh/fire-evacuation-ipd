@@ -6,7 +6,7 @@ from firebase_admin import credentials, firestore
 
 # Firebase setup
 # Replace 'path_to_firebase_key.json' with the path to your Firebase key JSON file
-cred = credentials.Certificate("firebase_key.json")  # e.g., 'firebase_key.json'
+cred = credentials.Certificate("./firebase_key.json")  # e.g., 'firebase_key.json'
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -50,5 +50,7 @@ def stop_simulation():
     global simulation_running
     simulation_running = False
 
-# To start the simulation: start_simulation()
-# To stop the simulation: stop_simulation()
+# To start the simulation: 
+# start_simulation()
+# To stop the simulation: 
+# stop_simulation()
