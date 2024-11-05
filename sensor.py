@@ -39,11 +39,13 @@ def start_simulation():
     """Start the sensor simulation."""
     global simulation_running
     simulation_running = True
+    sensor_data = generate_sensor_data()
+    for data in sensor_data:
+        db.collection('sensor_readings').add(data)  # Upload each reading to Firestore
+    c=0
     while simulation_running:
-        sensor_data = generate_sensor_data()
-        for reading in sensor_data:
-            db.collection('sensor_readings').add(reading)  # Upload each reading to Firestore
-        time.sleep(5)  # 5-second interval for real-time updates
+        while c!=0:
+            c=c+1 
 
 def stop_simulation():
     """Stop the sensor simulation."""
