@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:app/components/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/map.dart';
@@ -25,15 +23,7 @@ class _FireEvacuationPageWrapperState extends State<FireEvacuationPageWrapper> {
 
   // Function to show the popup dialog
   void _showPopup() {
-    showCustomPopup(
-      context,
-      "Exit from Stairway 2",
-      "Please exit from stairway 2 immediately.",
-      () {
-        // Close the dialog
-        Navigator.of(context).pop();
-      },
-    );
+    showCustomPopup(context, 'Enter Your current location');
   }
 
   @override
@@ -43,6 +33,19 @@ class _FireEvacuationPageWrapperState extends State<FireEvacuationPageWrapper> {
         children: [
           FireEvacuationPage(),
           Align(alignment: Alignment.bottomCenter, child: MapWidget()),
+          Positioned(
+            top: 20, // Adjust for padding
+            right: 20, // Adjust for padding
+            child: ElevatedButton(
+              onPressed: _showPopup,
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(10),
+                shape: CircleBorder(),
+                backgroundColor: Colors.redAccent,
+              ),
+              child: Icon(Icons.location_on, color: Colors.white),
+            ),
+          ),
         ],
       ),
     );

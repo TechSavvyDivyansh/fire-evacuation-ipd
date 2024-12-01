@@ -32,7 +32,7 @@ class MapWidget extends StatelessWidget {
               child: InAppWebView(
                 initialUrlRequest: URLRequest(
                   url: WebUri(
-                    'https://app.mappedin.com/map/67403037ed01dd000b415691',
+                    'https://app.mappedin.com/map/674c4632f6578a000be876a1',
                   ),
                 ),
               ),
