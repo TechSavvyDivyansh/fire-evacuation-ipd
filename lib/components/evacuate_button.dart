@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class EvacuateButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const EvacuateButton({Key? key, required this.onPressed}) : super(key: key);
+  const EvacuateButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

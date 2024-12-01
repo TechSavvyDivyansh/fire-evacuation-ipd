@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: avoid_unnecessary_containers
 
 import 'package:app/components/evacuate_button.dart';
 import 'package:app/pages/fire_evacuation_page.dart';
@@ -11,9 +11,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 15.0, top: 5),
+            padding: EdgeInsets.only(right: 15.0, top: 5),
             child: CircleAvatar(
               backgroundImage: NetworkImage(
                 'https://img.freepik.com/premium-photo/cute-boy-firefighter-with-water-hose-cartoon-profession-icon_839035-1216222.jpg',
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => FireExecutionPage(),
+                builder: (context) => const FireEvacuationPageWrapper(),
               ),
             ),
           ),
