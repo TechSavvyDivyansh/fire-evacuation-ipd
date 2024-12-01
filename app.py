@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify , Response
-from find_shortest_path import shortest_path_main
+from new_shortest_path import shortest_path_main
 import cv2
 import numpy as np
 from flask_cors import CORS
@@ -21,8 +21,7 @@ def shortest_safest_path():
     })
     
     return jsonify({
-        "shortest_dist":shortest_dist,
-        "shortest_path":shortest_path
+        "exit":shortest_path[-1:][0]
     })
 
 def adjust_contrast_brightness(img, clip_percent):
