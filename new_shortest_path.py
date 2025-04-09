@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import heapq
 import json
+import math 
 
 
 cred = credentials.Certificate("firebase_key.json")  # Replace with your Firebase service account key
@@ -22,6 +23,21 @@ def fetch_hazardous_nodes():
         if data['temperature'] > TEMP_THRESHOLD and data['smoke'] and data['co2_level'] > CO2_THRESHOLD:
             hazardous_nodes.add(data['sensor_id'])
     return hazardous_nodes
+
+
+def euclidean_distance(x1, y1, x2, y2):
+    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+def get_nearest_checkpoint(x, y, graph):
+    """Find the nearest node in the graph to the given (x, y) coordinate."""
+    return min(
+        graph.keys(),
+        key=lambda node: euclidean_distance(
+            x, y, 
+            graph[node]['coordinates']['x'], 
+            graph[node]['coordinates']['y']
+        )
+    )
 
 
 def dijkstra_fire_safe(graph, start, destination, hazardous_nodes):
@@ -72,39 +88,55 @@ def load_graph_from_json(file_path):
 def monitor_and_update_path(graph, start, destination, interval=10):
     """Continuously monitor hazardous nodes and update the safe path."""
     hazardous_nodes = fetch_hazardous_nodes()
-    print(f"Hazardous nodes detected: {hazardous_nodes}")
+    # print(f"Hazardous nodes detected: {hazardous_nodes}")
 
     result = dijkstra_fire_safe(graph, start, destination, hazardous_nodes)
     if result:
-        print("Safe path to exit:", result['path'])
-        print("Distance:", result['distance'])
+        # print("Safe path to exit:", result['path'])
+        # print("Distance:", result['distance'])
         return result['distance'], result['path']
     else:
         print("No safe path found.")
         return float('inf'), []
 
 
-def shortest_path_main(current_location):
-    """Find the shortest path to any safe exit."""
-    graph = load_graph_from_json('merged.json')  
+def convert_path_to_coordinates(graph, path):
+    return [
+        [graph[node]['coordinates']['x'], graph[node]['coordinates']['y']]
+        for node in path
+    ]
+
+
+def shortest_path_from_coordinates(x, y):
+    graph = load_graph_from_json('merged.json')
+    start = get_nearest_checkpoint(x, y, graph)
+    print("Nearest start point:", start)
     exits = ['Stairway 1', 'Stairway 2']
+
     shortest_dist = float('inf')
     shortest_path = []
+    chosen_exit = None
 
     for exit in exits:
-        result_distance, result_path = monitor_and_update_path(graph, current_location, exit, interval=10)
+        result_distance, result_path = monitor_and_update_path(graph, start, exit)
         if result_distance < shortest_dist:
             shortest_dist = result_distance
             shortest_path = result_path
+            chosen_exit = exit  
 
-    if shortest_path:
-        print("Overall shortest path:", shortest_path)
-        print("Overall shortest distance:", shortest_dist)
-    else:
-        print("No safe path to any exit.")
+    if not shortest_path:
+        return {"error": "No safe path to any exit."}
 
-    return shortest_dist, shortest_path
+    return {
+        "x": x,
+        "y": y,
+        "exit": {
+            "x": graph[chosen_exit]['coordinates']['x'],
+            "y": graph[chosen_exit]['coordinates']['y']
+        },
+        "path": convert_path_to_coordinates(graph, shortest_path)
+    }
 
 
-# Entry point for testing
-# shortest_path_main("61")
+# Example usage
+print(shortest_path_from_coordinates(30, 30))

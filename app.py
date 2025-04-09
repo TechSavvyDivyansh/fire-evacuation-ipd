@@ -4,7 +4,7 @@ eventlet.monkey_patch()
 from flask import Flask, request, jsonify , Response
 from flask_socketio import SocketIO
 
-from new_shortest_path import shortest_path_main
+from new_shortest_path import shortest_path_from_coordinates
 import cv2
 import numpy as np
 from flask_cors import CORS
@@ -18,20 +18,25 @@ socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 CORS(app, resources={r"/": {"origins": ""}})
 
 
-@app.route("/shortestPath",methods=['POST'])
+@app.route("/shortestPath", methods=['POST'])
 def shortest_safest_path():
     data = request.get_json()
-    current_location=data['current_location']
-    # print(current_location)
-    shortest_dist,shortest_path=shortest_path_main(current_location)
-    if(shortest_dist==1000000):
+    current_location = data.get('current_location')
+
+    if not current_location or 'x' not in current_location or 'y' not in current_location:
+        return jsonify({"error": "Invalid input. Expected 'current_location': {'x': ..., 'y': ...}"}), 400
+
+    x = current_location['x']
+    y = current_location['y']
+
+    result = shortest_path_from_coordinates(x, y)
+
+    if "error" in result:
         return jsonify({
-        "message":"Please dont panic fighters are coming to save you"
-    })
-    
-    return jsonify({
-        "exit":shortest_path[-1:][0]
-    })
+            "message": "Please don’t panic, firefighters are coming to save you!"
+        })
+
+    return jsonify(result)
 
 def adjust_contrast_brightness(img, clip_percent):
     assert img.shape[2] == 3, "Image must have 3 channels (BGR)."
