@@ -1,11 +1,20 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, request, jsonify , Response
+from flask_socketio import SocketIO
+
 from new_shortest_path import shortest_path_main
 import cv2
 import numpy as np
 from flask_cors import CORS
 
+
+
+
 # Initialize the Flask app
 app = Flask(__name__)
+socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 CORS(app, resources={r"/": {"origins": ""}})
 
 
@@ -72,6 +81,20 @@ def video_feed():
         mimetype='multipart/x-mixed-replace; boundary=frame'
     )
 
+
+
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
+
+@socketio.on('personMoved')
+def handle_movement(data):
+    print('Received coordinates:', data)  # {'x': ..., 'y': ...}
+    # Here you can process and return shortest path
 
 
 
