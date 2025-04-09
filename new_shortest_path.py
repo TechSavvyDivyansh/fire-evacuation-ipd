@@ -134,7 +134,8 @@ def shortest_path_from_coordinates(x, y):
             "x": graph[chosen_exit]['coordinates']['x'],
             "y": graph[chosen_exit]['coordinates']['y']
         },
-        "path": convert_path_to_coordinates(graph, shortest_path)
+        "path": convert_path_to_coordinates(graph, shortest_path),
+        "exitName":chosen_exit
     }
 
 
