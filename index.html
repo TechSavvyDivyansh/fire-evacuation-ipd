@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Floor Map</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+
+<body>
+    <script>
+        let person;
+        let sensors = [];
+        let socket;
+        let lastSent = 0;
+        socket = io('http://localhost:5000');  // Change to your backend URL if hosted
+
+
+        function setup() {
+            createCanvas(1000, 600);
+
+            person = createVector(260, 100);
+
+            sensors.push(createVector(60, 350)); // HOD CABIN
+            sensors.push(createVector(435, 250)); // 61
+            sensors.push(createVector(695, 450)); // L5
+        }
+
+        function draw() {
+            background(240);
+            drawMap();
+            movePerson();
+
+            fill('blue');
+            ellipse(person.x, person.y, 15, 15);
+            text("Person", person.x + 10, person.y);
+
+            fill('red');
+            for (let i = 0; i < sensors.length; i++) {
+                ellipse(sensors[i].x, sensors[i].y, 10, 10);
+                text("Sensor " + (i + 1), sensors[i].x + 10, sensors[i].y);
+
+                stroke('orange');
+                line(person.x, person.y, sensors[i].x, sensors[i].y);
+                noStroke();
+            }
+
+            fill(0);
+            textSize(16);
+            text(`Person Coordinates: (${floor(person.x)}, ${floor(person.y)})`, 20, height - 20);
+        }
+
+        function drawMap() {
+            fill(255);
+            stroke(0);
+
+            // Top row
+            rect(20, 50, 180, 100);   // Stairway 1
+            text("Stairway 1", 30, 80);
+
+            rect(350, 50, 100, 60);   // Elevator 1
+            text("Elevator 1", 360, 75);
+            rect(350, 110, 100, 60);   // Elevator 2 (horizontal)
+            text("Elevator 2", 360, 135);
+
+            rect(300, 200, 130, 100);  // Staff Room
+            text("Staff Room", 310, 230);
+
+            rect(430, 200, 145, 100);  // 61
+            text("61", 440, 230);
+            rect(575, 200, 145, 100);  // 62
+            text("62", 585, 230);
+            rect(720, 200, 145, 100);  // 63
+            text("63", 730, 230);
+
+            rect(880, 200, 100, 100);  // Stairway 2
+            text("Stairway 2", 890, 230);
+
+            // Left vertical
+            rect(100, 200, 120, 100);  // L1
+            text("L1", 140, 230);
+
+            rect(20, 300, 80, 100);  // HOD
+            text("HOD \nCABIN", 25, 330);
+
+            rect(100, 400, 100, 100);  // L2
+            text("L2", 140, 430);
+
+            // Bottom row
+            rect(200, 400, 100, 100);  // L3
+            text("L3", 240, 430);
+            rect(300, 400, 100, 100);  // L4
+            text("L4", 340, 430);
+            rect(400, 400, 100, 100);  // L5
+            text("L5", 440, 430);
+            rect(500, 400, 100, 100);  // L6
+            text("L6", 540, 430);
+            rect(600, 400, 100, 100);  // Staff Lounge
+            text("Staff \nLounge", 610, 430);
+
+            rect(700, 400, 70, 100);   // Store Room
+            text("Store \nRoom", 710, 430);
+            rect(770, 400, 50, 100);   // HER
+            text("HER", 777, 430);
+            rect(820, 400, 50, 100);   // SH
+            text("HIS", 830, 430);
+
+            rect(880, 480, 100, 20);   // Elevator 3
+            text("Elevator 3", 890, 495);
+        }
+
+        function movePerson() {
+            let moved = false;
+            if (keyIsDown(LEFT_ARROW)) {
+                person.x -= 2;
+                moved = true;
+            }
+            if (keyIsDown(RIGHT_ARROW)) {
+                person.x += 2;
+                moved = true;
+            }
+            if (keyIsDown(UP_ARROW)) {
+                person.y -= 2;
+                moved = true;
+            }
+            if (keyIsDown(DOWN_ARROW)) {
+                person.y += 2;
+                moved = true;
+            }
+
+            if (moved) {
+                sendPosition({ x: floor(person.x), y: floor(person.y) });
+            }
+        }
+        function sendPosition(position) {
+            const now = Date.now();
+            if (now - lastSent > 1000) { // send only every 1 second
+                socket.emit("personMoved", position);
+                lastSent = now;
+            }
+        }
+    </script>
+</body>
+
+</html>
