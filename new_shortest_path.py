@@ -60,10 +60,10 @@ def load_graph_from_json(file_path):
         return json.load(f)
 
 
-def calculate_path(graph, start, destination):
+def calculate_path(graph, start, destination,fireroom):
     """Calculate the safest path avoiding hardcoded hazardous nodes."""
     # Hardcoded hazardous node
-    hazardous_nodes = {'63'}
+    hazardous_nodes = {fireroom}
     # print(f"Using hardcoded hazardous nodes: {hazardous_nodes}")
 
     result = dijkstra_fire_safe(graph, start, destination, hazardous_nodes)
@@ -82,7 +82,7 @@ def convert_path_to_coordinates(graph, path):
     ]
 
 
-def shortest_path_from_coordinates(x, y):
+def shortest_path_from_coordinates(x, y,fireRoom):
     try:
         # print("Loading graph...")
         graph = load_graph_from_json('merged_new.json')
@@ -113,7 +113,7 @@ def shortest_path_from_coordinates(x, y):
         # print("Calculating paths to exits...")
         for exit_point in exits:
             # print(f"Calculating path to {exit_point}...")
-            result_distance, result_path = calculate_path(graph, start, exit_point)
+            result_distance, result_path = calculate_path(graph, start, exit_point,fireRoom)
             if result_distance < shortest_dist:
                 shortest_dist = result_distance
                 shortest_path = result_path
@@ -146,3 +146,12 @@ def shortest_path_from_coordinates(x, y):
         return {"error": str(e)}
     
 # shortest_path_from_coordinates(300,300)
+
+def room_to_coordinate(room):
+    graph = load_graph_from_json('merged_new.json')
+
+    if room in graph:
+        coordinates = graph[room]['coordinates']
+        return coordinates['x'], coordinates['y']
+    else:
+        raise ValueError(f"Room '{room}' not found in the graph.")

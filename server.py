@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
-from new_shortest_path import get_nearest_checkpoint, load_graph_from_json, shortest_path_from_coordinates
+from new_shortest_path import get_nearest_checkpoint, load_graph_from_json, shortest_path_from_coordinates,room_to_coordinate
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
+
+fireroom='61'
 
 @app.route('/')
 def index():
@@ -18,7 +20,7 @@ def calculate_path_api():
         data = request.get_json()
         x, y = data['x'], data['y']
 
-        result = shortest_path_from_coordinates(x, y)
+        result = shortest_path_from_coordinates(x, y,fireroom)
         print(result)
         return jsonify(result)
     except Exception as e:
@@ -26,6 +28,13 @@ def calculate_path_api():
         print(f"❌ Error: {e}")
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/get-fire')
+def get_fire_api():
+    firepoints=room_to_coordinate(fireroom)
+    return jsonify(firepoints)
+
 
 def calculate_path_internal(x, y):
     print(f"🔍 Calculating path for ({x}, {y})")
@@ -45,7 +54,7 @@ def handle_disconnect():
 
 @socketio.on('personMoved')
 def handle_person_moved(data):
-    # print(f"📡 Received personMoved: {data}")
+    print(f"📡 Received personMoved: {data}")
     emit('personMoved', data, broadcast=True)  # Emit to all clients including sender
 
 if __name__ == '__main__':
