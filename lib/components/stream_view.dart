@@ -15,7 +15,7 @@ class FireEvacuationPage extends StatelessWidget {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.65,
             child: Mjpeg(
-              stream: 'http://192.168.1.9:5000/video_feed',
+              stream: 'http://192.168.1.9:5002/video_feed',
               isLive: true,
             ),
           ),

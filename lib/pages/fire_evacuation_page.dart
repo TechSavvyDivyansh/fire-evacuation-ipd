@@ -1,6 +1,6 @@
-import 'package:app/components/popup.dart';
+// import 'package:app/components/popup.dart';
+import 'package:app/components/live_map.dart';
 import 'package:flutter/material.dart';
-import 'package:app/components/map.dart';
 import 'package:app/components/stream_view.dart';
 
 class FireEvacuationPageWrapper extends StatefulWidget {
@@ -17,14 +17,14 @@ class _FireEvacuationPageWrapperState extends State<FireEvacuationPageWrapper> {
     super.initState();
     // Show the popup as soon as the page is loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showPopup();
+      // _showPopup();
     });
   }
 
   // Function to show the popup dialog
-  void _showPopup() {
-    showCustomPopup(context, 'Enter Your current location');
-  }
+  // void _showPopup() {
+  //   showCustomPopup(context, 'Enter Your current location');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +32,7 @@ class _FireEvacuationPageWrapperState extends State<FireEvacuationPageWrapper> {
       body: Stack(
         children: [
           FireEvacuationPage(),
-          Align(alignment: Alignment.bottomCenter, child: MapWidget()),
-          Positioned(
-            top: 20, // Adjust for padding
-            right: 20, // Adjust for padding
-            child: ElevatedButton(
-              onPressed: _showPopup,
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(10),
-                shape: CircleBorder(),
-                backgroundColor: Colors.redAccent,
-              ),
-              child: Icon(Icons.location_on, color: Colors.white),
-            ),
-          ),
+          Align(alignment: Alignment.bottomCenter, child: LiveMap()),
         ],
       ),
     );
