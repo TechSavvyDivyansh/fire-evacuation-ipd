@@ -14,6 +14,7 @@ fireroom='61'
 
 @app.route('/')
 def index():
+    print("Entered")
     return 'Simplified Server is running'
 
 @app.route('/calculate-path', methods=['POST'])
