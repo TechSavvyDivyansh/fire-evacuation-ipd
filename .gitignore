@@ -9,4 +9,5 @@ index2.html
 path_server.py
 fire_safe_path.py
 __pycache__
+/venv
 

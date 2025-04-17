@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch()
+import os
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
@@ -58,5 +61,5 @@ def handle_person_moved(data):
     emit('personMoved', data, broadcast=True)  # Emit to all clients including sender
 
 if __name__ == '__main__':
-    print("🚀 Running simplified SocketIO server...")
-    socketio.run(app, host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 5000))  # default to 5000 locally
+    socketio.run(app, host='0.0.0.0', port=port)
