@@ -172,7 +172,7 @@ class MapPainter extends CustomPainter {
       for (int i = 0; i < pathPoints.length - 1; i++) {
         canvas.drawLine(pathPoints[i], pathPoints[i + 1], pathPaint);
       }
-    } else {
+    } else if (path.isEmpty && (x != 0 || y != 0)) {
       // If path is empty, draw a direct line from person to exit
       final pathPaint = Paint()
         ..color = Colors.blueAccent
