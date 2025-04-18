@@ -19,6 +19,7 @@ class _LiveMapState extends State<LiveMap> {
   double exitY = 300;
   double? fireX;
   double? fireY;
+  List<List<double>> path = [];
 
   @override
   void initState() {
@@ -62,10 +63,18 @@ class _LiveMapState extends State<LiveMap> {
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
         final exit = result['exit'];
+        final rawPath = result['path'];
+
         if (exit != null && exit['x'] != null && exit['y'] != null) {
           setState(() {
             exitX = exit['x'].toDouble();
             exitY = exit['y'].toDouble();
+
+            // ✅ Store path as List<List<double>>
+            path = (rawPath as List)
+                .skip(1)
+                .map<List<double>>((p) => [p[0].toDouble(), p[1].toDouble()])
+                .toList();
           });
         }
       }
@@ -112,6 +121,7 @@ class _LiveMapState extends State<LiveMap> {
         exitY: exitY,
         fireX: fireX,
         fireY: fireY,
+        path: path,
       ),
     );
   }

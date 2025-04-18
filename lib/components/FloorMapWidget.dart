@@ -6,6 +6,7 @@ class FloorMapWidget extends StatefulWidget {
   final double personX, personY;
   final double exitX, exitY;
   final double? fireX, fireY;
+  final List<List<double>> path;
 
   const FloorMapWidget({
     required this.personX,
@@ -14,6 +15,7 @@ class FloorMapWidget extends StatefulWidget {
     required this.exitY,
     this.fireX,
     this.fireY,
+    required this.path,
     Key? key,
   }) : super(key: key);
 
@@ -28,6 +30,7 @@ class _FloorMapWidgetState extends State<FloorMapWidget> {
   late double _exitY;
   double? _fireX;
   double? _fireY;
+  List<List<double>> _path = [];
 
   @override
   void initState() {
@@ -38,6 +41,7 @@ class _FloorMapWidgetState extends State<FloorMapWidget> {
     _exitY = widget.exitY;
     _fireX = widget.fireX;
     _fireY = widget.fireY;
+    _path = widget.path;
   }
 
   @override
@@ -50,6 +54,7 @@ class _FloorMapWidgetState extends State<FloorMapWidget> {
       _exitY = widget.exitY;
       _fireX = widget.fireX;
       _fireY = widget.fireY;
+      _path = widget.path;
     });
   }
 
@@ -68,6 +73,7 @@ class _FloorMapWidgetState extends State<FloorMapWidget> {
             exitY: _exitY,
             fireX: _fireX,
             fireY: _fireY,
+            path: _path,
           ),
         ),
       ),
@@ -79,6 +85,7 @@ class MapPainter extends CustomPainter {
   final double x, y;
   final double exitX, exitY;
   final double? fireX, fireY;
+  final List<List<double>> path;
 
   MapPainter({
     required this.x,
@@ -87,6 +94,7 @@ class MapPainter extends CustomPainter {
     required this.exitY,
     this.fireX,
     this.fireY,
+    required this.path,
   });
 
   @override
@@ -150,6 +158,20 @@ class MapPainter extends CustomPainter {
       final firePaint = Paint()..color = Colors.deepOrange;
       canvas.drawCircle(Offset(fireX!, fireY!), 8, firePaint);
       drawText('🔥 Fire', Offset(fireX! + 10, fireY! - 5));
+    }
+
+    // 🔷 Path Line Drawing
+    if (path.isNotEmpty) {
+      final pathPaint = Paint()
+        ..color = Colors.blueAccent
+        ..strokeWidth = 3.0;
+
+      final pathPoints = [Offset(x, y)] +
+          path.map((point) => Offset(point[0], point[1])).toList();
+
+      for (int i = 0; i < pathPoints.length - 1; i++) {
+        canvas.drawLine(pathPoints[i], pathPoints[i + 1], pathPaint);
+      }
     }
   }
 
