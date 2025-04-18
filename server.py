@@ -5,12 +5,13 @@ from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 from new_shortest_path import get_nearest_checkpoint, load_graph_from_json, shortest_path_from_coordinates,room_to_coordinate
+from FireGenerate import randomFireGenerator
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
 
-fireroom='61'
+fireroom=''
 
 @app.route('/')
 def index():
@@ -36,6 +37,8 @@ def calculate_path_api():
 
 @app.route('/get-fire')
 def get_fire_api():
+    global fireroom
+    fireroom = randomFireGenerator()
     firepoints=room_to_coordinate(fireroom)
     return jsonify(firepoints)
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Floor Map</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+
+<body>
+    <script>
+        let person;
+        let exit;
+        let fire;
+        let socket;
+        let lastSent = 0;
+
+        // Connect to the Socket.io server
+        socket = io('https://fire-evacuation-ipd.onrender.com'); // Update to your backend URL
+
+        // Initial setup for the p5.js canvas
+        function setup() {
+            createCanvas(1000, 600);
+            person = createVector(260, 100);
+            exit = createVector(930, 300);
+            fire = null;
+
+            // Listen for updates on person location and fire from the backend
+            socket.on('personMoved', (data) => {
+                person.x = data.x;
+                person.y = data.y;
+            });
+
+            socket.on('fireLocation', (data) => {
+                fire = createVector(data.x, data.y);
+            });
+        }
+
+        // Draw everything on the canvas
+        function draw() {
+            background(240);
+            drawFloorMap();
+            drawPerson();
+            drawExit();
+            drawFire();
+        }
+
+        // Draw the floor map
+        function drawFloorMap() {
+            fill(255);
+            stroke(0);
+
+            // Drawing rooms and labels
+            rect(20, 50, 180, 100); // Stairway 1
+            text("Stairway 1", 30, 80);
+
+            rect(350, 50, 100, 60); // Elevator 1
+            text("Elevator 1", 360, 75);
+
+            rect(300, 200, 130, 100); // Staff Room
+            text("Staff Room", 310, 230);
+
+            rect(430, 200, 145, 100); // Room 61
+            text("61", 440, 230);
+
+            rect(720, 200, 145, 100); // Room 63
+            text("63", 730, 230);
+
+            rect(880, 200, 100, 100); // Stairway 2
+            text("Stairway 2", 890, 230);
+
+            rect(100, 200, 120, 100); // Room L1
+            text("L1", 140, 230);
+
+            rect(20, 300, 80, 100); // HOD Cabin
+            text("HOD CABIN", 25, 330);
+
+            rect(100, 400, 100, 100); // Room L2
+            text("L2", 140, 430);
+
+            rect(400, 400, 100, 100); // Room L5
+            text("L5", 440, 430);
+        }
+
+        // Draw the person marker
+        function drawPerson() {
+            fill('blue');
+            ellipse(person.x, person.y, 15, 15);
+            text("Person", person.x + 10, person.y);
+        }
+
+        // Draw the exit marker
+        function drawExit() {
+            fill('green');
+            ellipse(exit.x, exit.y, 15, 15);
+            text("Exit", exit.x + 10, exit.y);
+        }
+
+        // Draw the fire marker if available
+        function drawFire() {
+            if (fire) {
+                fill('red');
+                ellipse(fire.x, fire.y, 15, 15);
+                text("🔥 Fire", fire.x + 10, fire.y);
+            }
+        }
+
+        // Send the position of the person every 1 second to the backend
+        function sendPosition(position) {
+            const now = Date.now();
+            if (now - lastSent > 1000) { // Send only every 1 second
+                socket.emit("personMoved", position);
+                lastSent = now;
+            }
+        }
+
+        // Move the person with keyboard input
+        function keyPressed() {
+            if (keyCode === LEFT_ARROW) {
+                person.x -= 10;
+            } else if (keyCode === RIGHT_ARROW) {
+                person.x += 10;
+            } else if (keyCode === UP_ARROW) {
+                person.y -= 10;
+            } else if (keyCode === DOWN_ARROW) {
+                person.y += 10;
+            }
+            sendPosition({ x: person.x, y: person.y });
+        }
+    </script>
+</body>
+
+</html>
