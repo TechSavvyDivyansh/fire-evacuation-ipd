@@ -150,13 +150,13 @@ class MapPainter extends CustomPainter {
 
     // ✅ Exit Marker
     final exitPaint = Paint()..color = Colors.green;
-    canvas.drawCircle(Offset(exitX, exitY), 8, exitPaint);
+    canvas.drawCircle(Offset(exitX, exitY), 15, exitPaint);
     drawText('Exit', Offset(exitX + 10, exitY - 5));
 
     // 🔥 Fire Marker (reddish-orange)
     if (fireX != null && fireY != null) {
       final firePaint = Paint()..color = Colors.deepOrange;
-      canvas.drawCircle(Offset(fireX!, fireY!), 8, firePaint);
+      canvas.drawCircle(Offset(fireX!, fireY!), 15, firePaint);
       drawText('🔥 Fire', Offset(fireX! + 10, fireY! - 5));
     }
 
