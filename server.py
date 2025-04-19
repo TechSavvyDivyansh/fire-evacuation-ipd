@@ -4,7 +4,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
-from new_shortest_path import get_nearest_checkpoint, load_graph_from_json, shortest_path_from_coordinates,room_to_coordinate
+from new_shortest_path import  load_graph_from_json, shortest_path_from_coordinates,room_to_coordinate
 from FireGenerate import randomFireGenerator
 
 app = Flask(__name__)
@@ -25,9 +25,20 @@ def calculate_path_api():
         data = request.get_json()
         x, y = data['x'], data['y']
 
-        result = shortest_path_from_coordinates(x, y,fireroom)
-        print(result)
-        return jsonify(result)
+        if(fireroom!=""):
+            result = shortest_path_from_coordinates(x, y,fireroom)
+
+            print(f'myresult : {result}')
+            return jsonify(result)
+        else:
+            return jsonify({
+                    "x": x,
+                    "y": y,
+                    "exit": {},
+                    "path": [],
+                    "exitName": ""
+                })
+    
     except Exception as e:
         import traceback
         print(f"❌ Error: {e}")
@@ -38,17 +49,18 @@ def calculate_path_api():
 @app.route('/get-fire')
 def get_fire_api():
     global fireroom
+    fireroom=""
     fireroom = randomFireGenerator()
     firepoints=room_to_coordinate(fireroom)
     return jsonify(firepoints)
 
 
-def calculate_path_internal(x, y):
-    print(f"🔍 Calculating path for ({x}, {y})")
-    graph = load_graph_from_json('merged_new.json')
-    start = get_nearest_checkpoint(x, y, graph)
-    print(f"✅ Nearest checkpoint: {start}")
-    return shortest_path_from_coordinates(x, y)
+# def calculate_path_internal(x, y):
+    # print(f"🔍 Calculating path for ({x}, {y})")
+    # graph = load_graph_from_json('merged_new.json')
+    # start = get_nearest_checkpoint(x, y, graph)
+    # print(f"✅ Nearest checkpoint: {start}")
+    # return shortest_path_from_coordinates(x, y)
 
 # --- WebSocket Events ---
 @socketio.on('connect')

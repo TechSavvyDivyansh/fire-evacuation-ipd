@@ -20,6 +20,6 @@ def randomFireGenerator():
 
             if temp > 45 and co2 > 1500 and smoke:
                 print(f"\n🔥 Fire detected in {room}!")
-                return room
+                return "L3"
 
             time.sleep(1)  # Optional: slow down loop for realism
