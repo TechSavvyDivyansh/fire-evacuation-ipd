@@ -1,410 +1,482 @@
 {
-    "L1": {
-        "coordinates": {
-            "x": 160,
-            "y": 300
-        },
-        "connections": [
-            {
-                "target": "Outside L1_L2",
-                "distance": 64.03124237432849
-            }
-        ]
+  "L1": {
+    "coordinates": {
+      "x": 160,
+      "y": 300
     },
-    "L2": {
-        "coordinates": {
-            "x": 150,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside L1_L2",
-                "distance": 70.71067811865476
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside L1_L2",
+        "distance": 50.99019513592785
+      }
+    ]
+  },
+  "L2": {
+    "coordinates": {
+      "x": 150,
+      "y": 400
     },
-    "L3": {
-        "coordinates": {
-            "x": 250,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside L1_L2",
-                "distance": 70.71067811865476
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside L1_L2",
+        "distance": 50.0
+      }
+    ]
+  },
+  "L3": {
+    "coordinates": {
+      "x": 250,
+      "y": 400
     },
-    "L4": {
-        "coordinates": {
-            "x": 350,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside 61",
-                "distance": 94.33981132056604
-            }
-        ]
+    "connections": [
+      {
+        "target": "Lobby Turn",
+        "distance": 50.99019513592785
+      }
+    ]
+  },
+  "L4": {
+    "coordinates": {
+      "x": 350,
+      "y": 400
     },
-    "L5": {
-        "coordinates": {
-            "x": 450,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside 61",
-                "distance": 53.85164807134504
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside L4",
+        "distance": 50.0
+      }
+    ]
+  },
+  "L5": {
+    "coordinates": {
+      "x": 450,
+      "y": 400
     },
-    "L6": {
-        "coordinates": {
-            "x": 550,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside 62",
-                "distance": 111.80339887498948
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 61",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Outside L4",
+        "distance": 111.80339887498948
+      }
+    ]
+  },
+  "L6": {
+    "coordinates": {
+      "x": 550,
+      "y": 400
     },
-    "Staff Lounge": {
-        "coordinates": {
-            "x": 650,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside 62",
-                "distance": 50.0
-            },
-            {
-                "target": "Outside 63",
-                "distance": 158.11388300841898
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 62",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Outside 61",
+        "distance": 70.71067811865476
+      }
+    ]
+  },
+  "Staff Lounge": {
+    "coordinates": {
+      "x": 650,
+      "y": 400
     },
-    "Store Room": {
-        "coordinates": {
-            "x": 735,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside 63",
-                "distance": 82.00609733428362
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 62",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Outside Store_Room",
+        "distance": 70.71067811865476
+      }
+    ]
+  },
+  "Store Room": {
+    "coordinates": {
+      "x": 735,
+      "y": 400
     },
-    "WashRoom": {
-        "coordinates": {
-            "x": 820,
-            "y": 400
-        },
-        "connections": [
-            {
-                "target": "Outside 63",
-                "distance": 53.85164807134504
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside Store_Room",
+        "distance": 61.032778078668514
+      }
+    ]
+  },
+  "WashRoom": {
+    "coordinates": {
+      "x": 820,
+      "y": 400
     },
-    "Back Elevator": {
-        "coordinates": {
-            "x": 930,
-            "y": 480
-        },
-        "connections": [
-            {
-                "target": "Stairway 2",
-                "distance": 180.0
-            },
-            {
-                "target": "Outside 63",
-                "distance": 183.84776310850236
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 63",
+        "distance": 53.85164807134504
+      }
+    ]
+  },
+  "Back Elevator": {
+    "coordinates": {
+      "x": 930,
+      "y": 480
     },
-    "61": {
-        "coordinates": {
-            "x": 500,
-            "y": 300
-        },
-        "connections": [
-            {
-                "target": "Outside 61",
-                "distance": 86.02325267042627
-            }
-        ]
+    "connections": [
+      {
+        "target": "Back Exit",
+        "distance": 130.0
+      }
+    ]
+  },
+  "61": {
+    "coordinates": {
+      "x": 500,
+      "y": 300
     },
-    "62": {
-        "coordinates": {
-            "x": 650,
-            "y": 300
-        },
-        "connections": [
-            {
-                "target": "Outside 62",
-                "distance": 50.0
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 61",
+        "distance": 50.0
+      }
+    ]
+  },
+  "62": {
+    "coordinates": {
+      "x": 650,
+      "y": 300
     },
-    "63": {
-        "coordinates": {
-            "x": 790,
-            "y": 300
-        },
-        "connections": [
-            {
-                "target": "Outside 63",
-                "distance": 50.99019513592785
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 62",
+        "distance": 70.71067811865476
+      }
+    ]
+  },
+  "63": {
+    "coordinates": {
+      "x": 790,
+      "y": 300
     },
-    "Staff Room": {
-        "coordinates": {
-            "x": 360,
-            "y": 300
-        },
-        "connections": [
-            {
-                "target": "Comps Entrance",
-                "distance": 141.4213562373095
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside 63",
+        "distance": 50.99019513592785
+      }
+    ]
+  },
+  "Staff Room": {
+    "coordinates": {
+      "x": 360,
+      "y": 300
     },
-    "HOD Cabin": {
-        "coordinates": {
-            "x": 100,
-            "y": 350
-        },
-        "connections": [
-            {
-                "target": "Outside L1_L2",
-                "distance": 100.0
-            }
-        ]
+    "connections": [
+      {
+        "target": "Comps Entrance",
+        "distance": 141.4213562373095
+      }
+    ]
+  },
+  "HOD Cabin": {
+    "coordinates": {
+      "x": 100,
+      "y": 350
     },
-    "Stairway 2": {
-        "coordinates": {
-            "x": 930,
-            "y": 300
-        },
-        "connections": [
-            {
-                "target": "Outside 63",
-                "distance": 139.2838827718412
-            },
-            {
-                "target": "Back Elevator",
-                "distance": 180.0
-            }
-        ]
+    "connections": [
+      {
+        "target": "Outside L1_L2",
+        "distance": 50.0
+      }
+    ]
+  },
+  "Stairway 2": {
+    "coordinates": {
+      "x": 930,
+      "y": 300
     },
-    "Elevator": {
-        "coordinates": {
-            "x": 350,
-            "y": 110
-        },
-        "connections": [
-            {
-                "target": "IT Entrance",
-                "distance": 130.38404810405297
-            },
-            {
-                "target": "Comps Entrance",
-                "distance": 127.27922061357856
-            }
-        ]
+    "connections": [
+      {
+        "target": "Back Exit",
+        "distance": 50.0
+      }
+    ]
+  },
+  "Elevator": {
+    "coordinates": {
+      "x": 350,
+      "y": 110
     },
-    "Stairway 1": {
-        "coordinates": {
-            "x": 200,
-            "y": 100
-        },
-        "connections": [
-            {
-                "target": "IT Entrance",
-                "distance": 128.06248474865697
-            },
-            {
-                "target": "Comps Entrance",
-                "distance": 116.61903789690601
-            }
-        ]
+    "connections": [
+      {
+        "target": "Front Exit",
+        "distance": 90.55385138137417
+      }
+    ]
+  },
+  "Stairway 1": {
+    "coordinates": {
+      "x": 200,
+      "y": 100
     },
-    "IT Entrance": {
-        "coordinates": {
-            "x": 280,
-            "y": 0
-        },
-        "connections": [
-            {
-                "target": "Elevator",
-                "distance": 130.38404810405297
-            },
-            {
-                "target": "Stairway 1",
-                "distance": 128.06248474865697
-            },
-            {
-                "target": "Comps Entrance",
-                "distance": 200.9975124224178
-            }
-        ]
+    "connections": [
+      {
+        "target": "Front Exit",
+        "distance": 60.0
+      }
+    ]
+  },
+  "IT Entrance": {
+    "coordinates": {
+      "x": 280,
+      "y": 0
     },
-    "Comps Entrance": {
-        "coordinates": {
-            "x": 260,
-            "y": 200
-        },
-        "connections": [
-            {
-                "target": "Elevator",
-                "distance": 127.27922061357856
-            },
-            {
-                "target": "Stairway 1",
-                "distance": 116.61903789690601
-            },
-            {
-                "target": "IT Entrance",
-                "distance": 200.9975124224178
-            },
-            {
-                "target": "Staff Room",
-                "distance": 141.4213562373095
-            },
-            {
-                "target": "Outside L1_L2",
-                "distance": 161.55494421403512
-            }
-        ]
+    "connections": [
+      {
+        "target": "Front Exit",
+        "distance": 101.9803902718557
+      }
+    ]
+  },
+  "Comps Entrance": {
+    "coordinates": {
+      "x": 260,
+      "y": 200
     },
-    "Outside L1_L2": {
-        "coordinates": {
-            "x": 200,
-            "y": 350
-        },
-        "connections": [
-            {
-                "target": "Comps Entrance",
-                "distance": 161.55494421403512
-            },
-            {
-                "target": "L1",
-                "distance": 64.03124237432849
-            },
-            {
-                "target": "L2",
-                "distance": 70.71067811865476
-            },
-            {
-                "target": "L3",
-                "distance": 70.71067811865476
-            },
-            {
-                "target": "HOD Cabin",
-                "distance": 100.0
-            },
-            {
-                "target": "Outside 61",
-                "distance": 230.0
-            }
-        ]
+    "connections": [
+      {
+        "target": "Front Exit",
+        "distance": 100.0
+      },
+      {
+        "target": "Staff Room",
+        "distance": 141.4213562373095
+      },
+      {
+        "target": "Lobby Turn",
+        "distance": 150.0
+      }
+    ]
+  },
+  "Front Exit": {
+    "coordinates": {
+      "x": 260,
+      "y": 100
     },
-    "Outside 61": {
-        "coordinates": {
-            "x": 430,
-            "y": 350
-        },
-        "connections": [
-            {
-                "target": "Outside L1_L2",
-                "distance": 230.0
-            },
-            {
-                "target": "L4",
-                "distance": 94.33981132056604
-            },
-            {
-                "target": "L5",
-                "distance": 53.85164807134504
-            },
-            {
-                "target": "61",
-                "distance": 86.02325267042627
-            },
-            {
-                "target": "Outside 62",
-                "distance": 220.0
-            }
-        ]
+    "connections": [
+      {
+        "target": "Elevator",
+        "distance": 90.55385138137417
+      },
+      {
+        "target": "Stairway 1",
+        "distance": 60.0
+      },
+      {
+        "target": "Comps Entrance",
+        "distance": 100.0
+      },
+      {
+        "target": "IT Entrance",
+        "distance": 101.9803902718557
+      }
+    ]
+  },
+  "Outside L1_L2": {
+    "coordinates": {
+      "x": 150,
+      "y": 350
     },
-    "Outside 62": {
-        "coordinates": {
-            "x": 650,
-            "y": 350
-        },
-        "connections": [
-            {
-                "target": "Outside 61",
-                "distance": 220.0
-            },
-            {
-                "target": "62",
-                "distance": 50.0
-            },
-            {
-                "target": "L6",
-                "distance": 111.80339887498948
-            },
-            {
-                "target": "Staff Lounge",
-                "distance": 50.0
-            },
-            {
-                "target": "Outside 63",
-                "distance": 150.0
-            }
-        ]
+    "connections": [
+      {
+        "target": "Lobby Turn",
+        "distance": 110.0
+      },
+      {
+        "target": "L1",
+        "distance": 50.99019513592785
+      },
+      {
+        "target": "L2",
+        "distance": 50.0
+      },
+      {
+        "target": "HOD Cabin",
+        "distance": 50.0
+      }
+    ]
+  },
+  "Lobby Turn": {
+    "coordinates": {
+      "x": 260,
+      "y": 350
     },
-    "Outside 63": {
-        "coordinates": {
-            "x": 800,
-            "y": 350
-        },
-        "connections": [
-            {
-                "target": "Outside 62",
-                "distance": 150.0
-            },
-            {
-                "target": "63",
-                "distance": 50.99019513592785
-            },
-            {
-                "target": "Staff Lounge",
-                "distance": 158.11388300841898
-            },
-            {
-                "target": "Store Room",
-                "distance": 82.00609733428362
-            },
-            {
-                "target": "WashRoom",
-                "distance": 53.85164807134504
-            },
-            {
-                "target": "Stairway 2",
-                "distance": 139.2838827718412
-            },
-            {
-                "target": "Back Elevator",
-                "distance": 183.84776310850236
-            }
-        ]
-    }
+    "connections": [
+      {
+        "target": "Comps Entrance",
+        "distance": 150.0
+      },
+      {
+        "target": "Outside L1_L2",
+        "distance": 110.0
+      },
+      {
+        "target": "L3",
+        "distance": 50.99019513592785
+      },
+      {
+        "target": "Outside L4",
+        "distance": 90.0
+      }
+    ]
+  },
+  "Back Exit": {
+    "coordinates": {
+      "x": 930,
+      "y": 350
+    },
+    "connections": [
+      {
+        "target": "Stairway 2",
+        "distance": 50.0
+      },
+      {
+        "target": "Back Elevator",
+        "distance": 130.0
+      },
+      {
+        "target": "Outside 63",
+        "distance": 130.0
+      }
+    ]
+  },
+  "Outside L4": {
+    "coordinates": {
+      "x": 350,
+      "y": 350
+    },
+    "connections": [
+      {
+        "target": "Lobby Turn",
+        "distance": 90.0
+      },
+      {
+        "target": "Outside 61",
+        "distance": 150.0
+      },
+      {
+        "target": "L4",
+        "distance": 50.0
+      },
+      {
+        "target": "L5",
+        "distance": 111.80339887498948
+      }
+    ]
+  },
+  "Outside 61": {
+    "coordinates": {
+      "x": 500,
+      "y": 350
+    },
+    "connections": [
+      {
+        "target": "Outside L4",
+        "distance": 150.0
+      },
+      {
+        "target": "L5",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "61",
+        "distance": 50.0
+      },
+      {
+        "target": "Outside 62",
+        "distance": 100.0
+      },
+      {
+        "target": "L6",
+        "distance": 70.71067811865476
+      }
+    ]
+  },
+  "Outside 62": {
+    "coordinates": {
+      "x": 600,
+      "y": 350
+    },
+    "connections": [
+      {
+        "target": "62",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Outside 61",
+        "distance": 100.0
+      },
+      {
+        "target": "L6",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Staff Lounge",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Outside Store_Room",
+        "distance": 100.0
+      }
+    ]
+  },
+  "Outside Store_Room": {
+    "coordinates": {
+      "x": 700,
+      "y": 350
+    },
+    "connections": [
+      {
+        "target": "Outside 62",
+        "distance": 100.0
+      },
+      {
+        "target": "Staff Lounge",
+        "distance": 70.71067811865476
+      },
+      {
+        "target": "Store Room",
+        "distance": 61.032778078668514
+      },
+      {
+        "target": "Outside 63",
+        "distance": 100.0
+      }
+    ]
+  },
+  "Outside 63": {
+    "coordinates": {
+      "x": 800,
+      "y": 350
+    },
+    "connections": [
+      {
+        "target": "63",
+        "distance": 50.99019513592785
+      },
+      {
+        "target": "Outside Store_Room",
+        "distance": 100.0
+      },
+      {
+        "target": "WashRoom",
+        "distance": 53.85164807134504
+      },
+      {
+        "target": "Back Exit",
+        "distance": 130.0
+      }
+    ]
+  }
 }
