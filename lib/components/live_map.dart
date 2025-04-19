@@ -70,9 +70,9 @@ class _LiveMapState extends State<LiveMap> {
             exitX = exit['x'].toDouble();
             exitY = exit['y'].toDouble();
 
-            // ✅ Store path as List<List<double>>
-            path = (rawPath as List)
-                .skip(1)
+            // ✅ Conditionally skip the first point based on path length
+            List rawList = rawPath as List;
+            path = (rawList.length > 2 ? rawList.skip(1) : rawList)
                 .map<List<double>>((p) => [p[0].toDouble(), p[1].toDouble()])
                 .toList();
           });
