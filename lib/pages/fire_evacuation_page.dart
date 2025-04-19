@@ -42,7 +42,7 @@ class _FireEvacuationPageWrapperState extends State<FireEvacuationPageWrapper> {
             child: ClipPath(
               clipper: SemicircleClipper(),
               child: Container(
-                color: const Color.fromARGB(216, 253, 253, 253),
+                color: const Color.fromARGB(255, 253, 253, 253),
                 width: double.infinity,
                 height: 420,
                 child: Stack(

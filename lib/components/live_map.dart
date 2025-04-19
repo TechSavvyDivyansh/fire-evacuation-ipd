@@ -30,7 +30,7 @@ class _LiveMapState extends State<LiveMap> {
 
   void connectToSocket() {
     socket = IO.io(
-      'http://192.168.1.9:5000',
+      'https://fire-evacuation-ipd.onrender.com',
       IO.OptionBuilder()
           .setTransports(['websocket'])
           .enableAutoConnect()
@@ -52,7 +52,8 @@ class _LiveMapState extends State<LiveMap> {
   }
 
   Future<void> calculatePath(double x, double y) async {
-    final uri = Uri.parse('http://192.168.1.9:5000/calculate-path');
+    final uri =
+        Uri.parse('https://fire-evacuation-ipd.onrender.com/calculate-path');
     try {
       final response = await http.post(
         uri,
@@ -104,8 +105,8 @@ class _LiveMapState extends State<LiveMap> {
 
   Future<void> fetchFireLocation() async {
     try {
-      final response =
-          await http.get(Uri.parse('http://192.168.1.9:5000/get-fire'));
+      final response = await http
+          .get(Uri.parse('https://fire-evacuation-ipd.onrender.com/get-fire'));
       if (response.statusCode == 200) {
         final fire = jsonDecode(response.body);
         if (fire is List && fire.length >= 2) {
