@@ -1,16 +1,14 @@
 import random
 import time
-import json 
 
 def randomFireGenerator():
     TEMP_THRESHOLD = 45.0  # Temperature threshold for hazards
     CO2_THRESHOLD = 1500.0
 
-    with open('merged_new.json', 'r') as f:
-        data = json.load(f)
 
     # Extract all room names (top-level keys)
-    rooms = list(data.keys())
+    rooms = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'Staff Lounge', 'Store Room', 'WashRoom', 'Back Elevator', '61', '62', '63', 'Staff Room', 'HOD Cabin', 'Stairway 2', 'Elevator', 'Stairway 1']
+   
 
     while True:
         for room in rooms:
@@ -26,3 +24,5 @@ def randomFireGenerator():
 
             time.sleep(1)  # Optional: slow down loop for realism
 
+
+randomFireGenerator()

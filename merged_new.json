@@ -217,13 +217,13 @@
   },
   "Stairway 1": {
     "coordinates": {
-      "x": 200,
+      "x": 0,
       "y": 100
     },
     "connections": [
       {
         "target": "Front Exit",
-        "distance": 60.0
+        "distance": 260.0
       }
     ]
   },
@@ -271,7 +271,7 @@
       },
       {
         "target": "Stairway 1",
-        "distance": 60.0
+        "distance": 260.0
       },
       {
         "target": "Comps Entrance",
