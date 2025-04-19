@@ -23,6 +23,3 @@ def randomFireGenerator():
                 return room
 
             time.sleep(1)  # Optional: slow down loop for realism
-
-
-randomFireGenerator()
