@@ -7,7 +7,7 @@ def randomFireGenerator():
 
 
     # Extract all room names (top-level keys)
-    rooms = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'Staff Lounge', 'Store Room', 'WashRoom', 'Back Elevator', '61', '62', '63', 'Staff Room', 'HOD Cabin', 'Stairway 2', 'Elevator', 'Stairway 1']
+    rooms = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'Staff Lounge', 'Store Room', 'WashRoom','61', '62', '63', 'Staff Room', 'HOD Cabin']
    
 
     while True:
