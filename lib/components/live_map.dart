@@ -62,6 +62,7 @@ class _LiveMapState extends State<LiveMap> {
 
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
+        print(result);
         final exit = result['exit'];
         final rawPath = result['path'];
 
@@ -76,6 +77,24 @@ class _LiveMapState extends State<LiveMap> {
                 .map<List<double>>((p) => [p[0].toDouble(), p[1].toDouble()])
                 .toList();
           });
+        } else {
+          // print("no exit foundddddddddddddddddddddddddd");
+          setState(() {
+            exitX = -10;
+            exitY = -10;
+
+            // ✅ Conditionally skip the first point based on path length
+            // List rawList = rawPath as List;
+            path = [];
+          });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content:
+                  Text("Stay calm, we’re here for you. Help is on the way!"),
+              duration: Duration(seconds: 1),
+            ),
+          );
         }
       }
     } catch (e) {

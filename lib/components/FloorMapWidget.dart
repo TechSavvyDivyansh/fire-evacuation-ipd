@@ -157,7 +157,6 @@ class MapPainter extends CustomPainter {
     if (fireX != null && fireY != null) {
       final firePaint = Paint()..color = Colors.deepOrange;
       canvas.drawCircle(Offset(fireX!, fireY!), 15, firePaint);
-      drawText('🔥 Fire', Offset(fireX! + 10, fireY! - 5));
     }
 
     // 🔷 Path Line Drawing
@@ -172,12 +171,6 @@ class MapPainter extends CustomPainter {
       for (int i = 0; i < pathPoints.length - 1; i++) {
         canvas.drawLine(pathPoints[i], pathPoints[i + 1], pathPaint);
       }
-    } else if (path.isEmpty && (x != 0 || y != 0)) {
-      // If path is empty, draw a direct line from person to exit
-      final pathPaint = Paint()
-        ..color = Colors.blueAccent
-        ..strokeWidth = 3.0;
-      canvas.drawLine(Offset(x, y), Offset(exitX, exitY), pathPaint);
     }
   }
 
