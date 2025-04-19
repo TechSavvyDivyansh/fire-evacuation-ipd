@@ -9,7 +9,7 @@ class SemicircleClipper extends CustomClipper<Path> {
 
     path.quadraticBezierTo(
       size.width / 2,
-      0,
+      size.height * 0.1,
       size.width,
       size.height * 0.4,
     );

@@ -80,8 +80,8 @@ class _LiveMapState extends State<LiveMap> {
         } else {
           // print("no exit foundddddddddddddddddddddddddd");
           setState(() {
-            exitX = -10;
-            exitY = -10;
+            exitX = -100;
+            exitY = -100;
 
             // ✅ Conditionally skip the first point based on path length
             // List rawList = rawPath as List;
@@ -130,9 +130,9 @@ class _LiveMapState extends State<LiveMap> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.transparent,
       width: 980,
-      height: 300,
+      height: 200,
       child: FloorMapWidget(
         personX: personX,
         personY: personY,
